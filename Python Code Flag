@@ -1,0 +1,143 @@
+    
+#####################################################
+# Global Variables and Constants
+#####################################################
+choice = ""
+length = 100
+#####################################################
+# Imports
+#####################################################
+import turtle
+turtle = turtle.Turtle()
+#####################################################
+# Subprograms
+#####################################################
+def displayMenu():
+    print("Please choose one of three flags - A German, Armenian, Netherlands flag, or all the flags. ")
+def makeRectangle():
+   turtle.begin_fill()
+   for _ in range(4):
+       if _% 2 == 0:# drawing length
+           turtle.forward(length * 5)          # Forward turtle by l00 units
+           turtle.right(90)           # Turn turtle by 90 degree
+       else:         # drawing width
+           turtle.forward(length)          # Forward turtle by 400 units
+           turtle.right(90)          # Turn turtle by 90 degree
+   turtle.end_fill()
+
+
+    
+def drawFlag(colourA, colourB, colourC):
+    turtle.home()
+    turtle.speed(5)
+    length = 50
+    turtle.penup()
+    turtle.right(180)
+    turtle.forward(300)
+    turtle.right(90)
+    turtle.forward(300)
+    turtle.right(90)
+    turtle.pendown()
+    def flag(colourA, colourB, colourC):
+        turtle.color(colourA)
+        turtle.fillcolor(colourA)
+        makeRectangle()
+        turtle.right(90)
+        turtle.forward(length)
+        turtle.left(90)
+        turtle.color(colourB)
+        turtle.fillcolor(colourB)
+        makeRectangle()
+        turtle.right(90)
+        turtle.forward(length)
+        turtle.left(90)
+        turtle.color(colourC)
+        turtle.fillcolor(colourC)
+        makeRectangle()
+        flag()
+
+def makeAllFlags():
+    turtle.penup()
+    turtle.right(180)
+    turtle.forward(300)
+    turtle.right(90)
+    turtle.forward(300)
+    turtle.right(90)
+    turtle.pendown()
+    flag()
+    turtle.penup()
+    turtle.home()
+    turtle.forward(50)
+    turtle.left(90)
+    turtle.forward(300)
+    turtle.right(90)
+    turtle.pendown()
+    colourA = ("#FF0000")
+    colourB = ("#00008B")
+    colourC = ("#FFBF00")
+    flag()
+    turtle.penup()
+    turtle.home()
+    turtle.forward(50)
+    turtle.right(90)
+    turtle.left(90)
+    colourA = "#009900"
+    colourB = "#CCCC00"
+    colourC = "#ADD8E6"
+    turtle.pendown()
+    flag()
+    turtle.penup()
+    turtle.home()
+    turtle.right(180)
+    turtle.forward(300)
+    turtle.right(180)
+    colourA = "#990000"
+    colourB = "#FFFFFF"
+    colourC = "#004C99"
+    flag()
+
+
+
+
+#####################################################
+# Main Program
+####################################################
+welcome = "Welcome to the FLAG printer!\n"        #welcome message
+
+print(welcome)
+displayMenu()
+userChoice = str(input("Which flag do you want printed: (pls say 'each' for all of them) "))     #asks which flag they want printed
+print(userChoice)
+countryList = ["german", "germany", "armenia", "armenian", "netherlands", "dutch", "gabon", "gabonese", "each"]
+
+
+if userChoice.lower() != countryList:         #validates to make sure they have inputed a correct flag
+    msg = "Please choose one of the appropriate countries listed above"                        #validates to make sure they have inputed a correct flag
+    print(userChoice)
+elif userChoice == "germany" or "german":                     #if decision is german 
+    msg = "Printing German Flag....."
+    drawFlag("#000000", "#FF0000", "#FFFF00")
+elif userChoice == "armenia" or "armenian":                   # if decision is armenian
+    msg = "Printing Armenian Flag....."
+    drawFlag("#FF0000", "#00008B", "#FFBF00")
+elif userChoice == "netherlands" or "dutch":                  # if decision is dutch
+    msg = ("Printing the Dutch Flag.....")
+    drawFlag("#990000", "#FFFFFF", "#004C99")
+elif userChoice == "gabon" or "gabonese":
+    msg = ("Printing Gabonese Flag.....")                      # if the decision is gabon
+    drawFlag("#009900", "#CCCC00", "#ADD8E6")
+elif userChoice == "each":
+    msg = ("Printing all four flags.....")
+    makeAllFlags()
+print(msg)
+
+question = str(input("Do you want to print a second flag? "))    #if the user wants another flag
+question.lower()
+if question == "yes":
+    turtle.clear()                                 #clears the canvas ready for a new flag to be drawn
+    turtle.home()
+    print(userChoice)
+elif question == "no":                                            #if user says no and wants to quit the program
+    turtle.clear
+    turtle.home()
+    print("Thank you - Goodbye!")     
